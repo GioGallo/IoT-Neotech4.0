@@ -80,7 +80,7 @@ namespace Autobus
 
         private void Timer2_Tick(object sender, EventArgs e)
         {
-         redis.Send();
+            redis.Send();
         }
     }
 }
