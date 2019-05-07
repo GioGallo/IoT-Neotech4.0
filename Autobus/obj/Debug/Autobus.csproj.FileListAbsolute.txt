@@ -8,3 +8,6 @@ C:\Users\Giovanni Gallo\Documents\Project Work\Autobus\Autobus\bin\Debug\Autobus
 C:\Users\Giovanni Gallo\Documents\Project Work\Autobus\Autobus\bin\Debug\Autobus.pdb
 C:\Users\Giovanni Gallo\Documents\Project Work\Autobus\Autobus\obj\Debug\Autobus.exe
 C:\Users\Giovanni Gallo\Documents\Project Work\Autobus\Autobus\obj\Debug\Autobus.pdb
+C:\Users\Giovanni Gallo\Documents\Project Work\Autobus\Autobus\bin\Debug\csredis.dll
+C:\Users\Giovanni Gallo\Documents\Project Work\Autobus\Autobus\bin\Debug\csredis.xml
+C:\Users\Giovanni Gallo\Documents\Project Work\Autobus\Autobus\obj\Debug\Autobus.csproj.CopyComplete

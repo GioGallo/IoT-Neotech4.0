@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,11 +16,14 @@ namespace Autobus
         private VirtualGPSSensor gps = new VirtualGPSSensor();
         private Queue<string> codaUpload = new Queue<string>();
         private string backup;
-        private int nPersone;
+        private int nPersone=0;
         private int idMezzo = 1;
+        private bool aperta = false;
+        DataSender redis = new DataSender();
         public Form1()
         {
             InitializeComponent();
+            timer2.Start();
         }
 
         public void StartGPS(object sender,EventArgs e)
@@ -32,7 +36,6 @@ namespace Autobus
                 btnApri.Enabled = false;
                 btnChiudi.Enabled = false;
             }
-
         }
 
         public void StopGPS(object sender,EventArgs e)
@@ -54,8 +57,8 @@ namespace Autobus
             btnApri.Enabled = false;
             btnChiudi.Enabled = true;
             btnPartenza.Enabled = false;
-            string apertura = backup+",\"messaggio\":\"Apertura Porte\"}";
-            codaUpload.Enqueue(apertura);
+            aperta = true;
+            redis.Read(backup + ",\"Aperto\":"+aperta+"\"Persone\":"+nPersone+"}");
         }
 
         public void ChiudiPorta(object sender,EventArgs e)
@@ -63,14 +66,21 @@ namespace Autobus
             btnPartenza.Enabled = true;
             btnChiudi.Enabled = false;
             btnApri.Enabled = true;
+            aperta = false;
+            redis.Read(backup + ",\"Aperto\":" + aperta + "\"Persone\":" + nPersone + "}");
         }
         private void Timer1_Tick(object sender, EventArgs e)
         {
             string temp = (gps.ToJson(idMezzo));
             backup = temp;
-            temp += "}";
-            codaUpload.Enqueue(temp);
+            temp =(temp + ",\"Aperto\":" + aperta + "\"Persone\":" + nPersone + "}");
+            redis.Read(temp);
             txtGPS.Text += temp+"\r\n";    
+        }
+
+        private void Timer2_Tick(object sender, EventArgs e)
+        {
+         redis.Send();
         }
     }
 }
