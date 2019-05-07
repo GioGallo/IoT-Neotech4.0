@@ -24,9 +24,17 @@ namespace Autobus
         {
             try
             {
-                StreamWriter sw = File.AppendText("C:\\Users\\Giovanni Gallo\\Desktop\\dati.txt");
-                sw.WriteLine(redis.BLPop(30, "sensors_data"));
-                sw.Close();
+                if(redis.LLen("sensors_data")==0)
+                {
+
+                }
+                else
+                {
+                    StreamWriter sw = File.AppendText("C:\\Users\\Giovanni Gallo\\Desktop\\dati.txt");
+                    sw.WriteLine(redis.BLPop(30, "sensors_data"));
+                    sw.Close();
+                }
+
             }catch(Exception e)
             {
 
