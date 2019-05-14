@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Autobus
 {
-    class VirtualGPSSensor:iSensor,iGPSSensor
+    class VirtualGPSSensor : iSensor, iGPSSensor
     {
         private double LatStazione = 45.956720;
         private double LongStazione = 12.654347;
@@ -39,9 +39,14 @@ namespace Autobus
         public void SetLongitudine(double log)
         { }
 
+        public string GetTimestamp(DateTime value)
+        {
+            TimeSpan span = (value - new DateTime(1970, 1, 1, 0, 0, 0, 0).ToLocalTime());
+            return span.TotalSeconds.ToString();
+        }
         public string ToJson(int id)
         {
-            return "{\"id\": "+id+",\""+getGPS()+"\",\"orario\":\""+DateTime.Now+"\"";
+            return "{\"id\": "+id+",\""+getGPS()+"\",\"orario\":\""+GetTimestamp(DateTime.Now)+"\"";
         }
     }
 }

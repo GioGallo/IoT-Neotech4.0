@@ -25,7 +25,6 @@ namespace Autobus
             InitializeComponent();
             timer2.Start();
         }
-
         public void StartGPS(object sender,EventArgs e)
         {
             if(btnStop.Enabled==false && btnChiudi.Enabled==false)
