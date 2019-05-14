@@ -4,7 +4,7 @@ const influx = new Influx.InfluxDB({
     database: 'Autobus',
     schema: [
       {
-        measurement: 'Posizione',
+        measurement: 'Posizione2',
         fields: { Aperte: Influx.FieldType.BOOLEAN,
             Latitudine: Influx.FieldType.FLOAT,
             Longitudine: Influx.FieldType.FLOAT,
@@ -28,10 +28,10 @@ async function routes (fastify, options) {
         })
         .then(() => {
         
-          var timestamp=data.orario*10000;
+          var timestamp=data.orario;
           influx.writePoints([
               {
-                measurement: 'Posizione',
+                measurement: 'Posizione2',
                 tags: {
                     Id:data.id
                 },

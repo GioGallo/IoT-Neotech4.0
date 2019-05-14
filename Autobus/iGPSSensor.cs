@@ -13,7 +13,7 @@ namespace Autobus
         void SetGPS(double lat, double log);
 
 
-        string GetTimestamp(DateTime value);
+        string GetTimestamp();
 
         double getLatitudine();
         double getLongitudine();

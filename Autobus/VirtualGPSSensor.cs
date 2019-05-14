@@ -39,14 +39,14 @@ namespace Autobus
         public void SetLongitudine(double log)
         { }
 
-        public string GetTimestamp(DateTime value)
+        public string GetTimestamp()
         {
-            TimeSpan span = (value - new DateTime(1970, 1, 1, 0, 0, 0, 0).ToLocalTime());
-            return span.TotalSeconds.ToString();
+            Int32 unixTimestamp = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+            return unixTimestamp.ToString();
         }
         public string ToJson(int id)
         {
-            return "{\"id\": "+id+",\""+getGPS()+"\",\"orario\":\""+GetTimestamp(DateTime.Now)+"\"";
+            return "{\"id\": "+id+",\""+getGPS()+"\",\"orario\":\""+ GetTimestamp() + "\"";
         }
     }
 }

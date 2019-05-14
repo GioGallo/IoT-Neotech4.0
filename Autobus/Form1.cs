@@ -57,7 +57,8 @@ namespace Autobus
             btnChiudi.Enabled = true;
             btnPartenza.Enabled = false;
             aperta = true;
-            redis.Read(backup + ",\"Aperto\":"+aperta+"\"Persone\":"+nPersone+"}");
+            string pippo = aperta.ToString().ToLower();
+            redis.Read(backup + ",\"Aperto\":"+pippo+",\"Persone\":"+nPersone+"}");
         }
 
         public void ChiudiPorta(object sender,EventArgs e)
@@ -66,13 +67,15 @@ namespace Autobus
             btnChiudi.Enabled = false;
             btnApri.Enabled = true;
             aperta = false;
-            redis.Read(backup + ",\"Aperto\":" + aperta + "\"Persone\":" + nPersone + "}");
+            string pippo = aperta.ToString().ToLower();
+            redis.Read(backup + ",\"Aperto\":" + pippo + ",\"Persone\":" + nPersone + "}");
         }
         private void Timer1_Tick(object sender, EventArgs e)
         {
             string temp = (gps.ToJson(idMezzo));
             backup = temp;
-            temp =(temp + ",\"Aperto\":" + aperta + "\"Persone\":" + nPersone + "}");
+            string pippo = aperta.ToString().ToLower();
+            temp =(temp + ",\"Aperto\":" + pippo + ",\"Persone\":" + nPersone + "}");
             redis.Read(temp);
             txtGPS.Text += temp+"\r\n";    
         }
