@@ -1,0 +1,11 @@
+{
+    "name": "apiprojectwork",
+    "description": "description",
+    "authors": "Gtam-tech",
+    "version": "0.0.1",
+    "main": "index",
+    "dependencies": {
+        "fastify": "^2.3.0",
+        "influx": "^5.0.7"
+    }
+}
