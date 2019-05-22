@@ -1,7 +1,8 @@
 const Influx=require('influx');
+const config = require('config');
 const influx = new Influx.InfluxDB({
-    host: '192.168.101.37',
-    database: 'Autobus',
+    host: config.get('host'),
+    database: config.get('database'),
     schema: [
       {
         measurement: 'Posizione3',
@@ -22,8 +23,8 @@ async function routes (fastify, options) {
 
         influx.getDatabaseNames()
         .then(names => {
-          if (!names.includes('Autobus')) {
-            return influx.createDatabase('Autobus');
+          if (!names.includes(config.get('database'))) {
+            return influx.createDatabase(config.get('database'));
           }
         })
         .then(() => {
@@ -42,7 +43,7 @@ async function routes (fastify, options) {
                 timestamp: timestamp,
               }
             ], {
-              database: 'Autobus'
+              database: config.get('database')
             }).then(function(){
               reply.code(200).send();
               console.log("Query avvenuta con successo-----------------------------------------------");
