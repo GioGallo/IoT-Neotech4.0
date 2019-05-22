@@ -3,19 +3,23 @@
 ITS Kennedy, Pordenone
 Corso IoT 2018/2019
 
-## Per Iniziare
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
 ### Prerequisiti
 
-- Redis 
+- Per l' utilizzo del seguente progetto è necessario predisporsi del software [Redis](https://redis.io/)
+
+- Prima di avviare il programma è necessario configurare i seguenti parametri nel file "app.config":
+  - url_api
+  - id_mezzo
 
 ### Installazione
+
+Di seguito si elencano i passi per 
 
 Configurare Redis sulla porta 6379.
 
 Configurare le API
+
+- 
 
 ## Running the tests
 
@@ -43,16 +47,17 @@ Add additional notes about how to deploy this on a live system
 
 ## Built With
 
-* [Visual Studio 2019](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Docker](https://maven.apache.org/) - Dependency Management
-* [](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* Visual Studio 2019
+* Docker
+* Redis
+* InfluxDb
 
 ## Autori
 
-* **Gallo Giovanni** - *Initial work*
-* **Ongaro Nicholas** - *Initial work*
-* **Ottoveggio Stefano** - *Initial work*
-* **Pozza Nicola** - *Initial work*
-* **Trevisan Samuele** - *Initial work*
+* **Gallo Giovanni** 
+* **Ongaro Nicholas** 
+* **Ottoveggio Stefano** 
+* **Pozza Nicola**
+* **Trevisan Samuele**
 
 
