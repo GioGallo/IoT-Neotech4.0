@@ -41,7 +41,7 @@ namespace Autobus
 
         public string GetTimestamp()
         {
-            Int32 unixTimestamp = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+            long unixTimestamp = ((long)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds)*1000000000;
             return unixTimestamp.ToString();
         }
         public string ToJson(int id)
