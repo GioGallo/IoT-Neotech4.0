@@ -4,7 +4,8 @@ const fastify = require('fastify')({
 });
 
 
-fastify.register(require('./api'), { prefix: '/api/sensor' });
+fastify.register(require('./api/Sensor'), { prefix: '/api/sensor' });
+fastify.register(require('./api/Autobus'), { prefix: '/api/autobus' });
 
 const start = async () => {
     try {
