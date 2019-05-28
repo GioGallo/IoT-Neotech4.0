@@ -10,6 +10,7 @@ namespace Autobus
     {
         private double LatStazione = 45.956720;
         private double LongStazione = 12.654347;
+        private double costante = (0.000100 - 0.000010) + 0.000010;
 
         public string getGPS()
         {
@@ -19,14 +20,14 @@ namespace Autobus
         public double getLatitudine()
         {
             Random random = new Random();
-            LatStazione += random.NextDouble() * (0.000100 - 0.000010) + 0.000010;
+            LatStazione += random.NextDouble() * costante;
             return LatStazione;
         }
 
         public double getLongitudine()
         {
             Random random = new Random();
-            LongStazione += random.NextDouble() * (0.000100 - 0.000010) + 0.000010;
+            LongStazione += random.NextDouble() * costante;
             return LongStazione;
         }
 
