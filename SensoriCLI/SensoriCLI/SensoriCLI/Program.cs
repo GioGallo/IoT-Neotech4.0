@@ -12,9 +12,16 @@ namespace SensoriCLI
     {
         static void Main(string[] args)
         {
-            Thread dati = new Thread(Generadati);
+            List<String> idMezzi = new AppSettingsReader().GetValue("idMezzi", typeof(string)).ToString().Split(',').ToList();
+            List<Thread> lstThread = new List<Thread>();
+            foreach (string id in idMezzi)
+            {
+                Thread t = new Thread(() => Generadati(id));
+                t.Name = "id" + id;
+                t.Start();
+                lstThread.Add(t);
+            }
             Thread invio = new Thread(InvioDati);
-            dati.Start();
             invio.Start();
         }
         public static void InvioDati()
@@ -25,25 +32,16 @@ namespace SensoriCLI
                 redis.Send();
             }
         }
-        public static void Generadati()
+        public static void Generadati(string id)
         {
-            string[] idMezzi = new AppSettingsReader().GetValue("idMezzi", typeof(string)).ToString().Split(',');
             DataSender redis = new DataSender();
-            List<VirtualGPSSensor> sensors = new List<VirtualGPSSensor>();
-            foreach (string id in idMezzi)
-            {
-                sensors.Add(new VirtualGPSSensor(Convert.ToInt32(id)));
-            }
+            VirtualGPSSensor sensor = new VirtualGPSSensor(Convert.ToInt32(id));
             while (true)
             {
-                foreach (VirtualGPSSensor sensor in sensors)
-                {
-                    string dati = sensor.Dati();
-                    Console.WriteLine(dati);
-                    redis.Read(dati);
-                    System.Threading.Thread.Sleep(1000);
-                }
+                string dato = sensor.Dati();
+                redis.Read(dato);
             }
+
         }
     }
 }
