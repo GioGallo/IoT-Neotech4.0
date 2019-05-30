@@ -40,6 +40,7 @@ namespace SensoriCLI
             {
                 string dato = sensor.Dati();
                 redis.Read(dato);
+                System.Threading.Thread.Sleep(10000);
             }
 
         }
