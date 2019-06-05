@@ -32,16 +32,18 @@ Corso IoT 2018/2019
   ```
   docker start *nome_container*
   ```
-* Aprire la cartella Api con Visual Studio Code
+* Aprire la cartella **Api** con Visual Studio Code
 
-* Eseguire il seguente comando da terminale
-  ```
-  npm install
-  ```
-* Avviare il servizio con il seguente comando da terminale
-  ```
-  node index.js
-  ```
+    * Eseguire il seguente comando da terminale
+      ```
+      npm install
+      ```
+    * Avviare il servizio con il seguente comando da terminale
+      ```
+      node index.js
+      ```
+* Aprire la cartella **SensoriCLI** con Visual Studio Community e avviare il programma
+
 * All' interno della cartella **influxdb-1.7.6-1** avviare i seguenti eseguibili
     * **influxd.exe**
     * **influx.exe**
@@ -49,7 +51,8 @@ Corso IoT 2018/2019
 * All' interno della cartella **chronograf-1.7.11** avviare il seguente eseguibile
     * **chronograf.exe**
     
-
+* Collegarsi con il browser al servizio online di Chronograf tramite l' indirizzo ip della macchina nella quale sono avviati InfluxDb e Chronograf, sulla porta *8888*
+    
   
 ## Sviluppato con
 
