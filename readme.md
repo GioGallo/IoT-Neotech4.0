@@ -23,18 +23,23 @@ Corso IoT 2018/2019
 
 * Configurare Redis sulla porta 6379
 
-* Aprire la cartella Api con Visual Studio Code
+* Aprire la cartella " Api " con Visual Studio Code
 
-* Eseguire il seguente comando da terminale
+* Eseguire il seguente comando da terminale:
   ```
   npm install
   ```
-* Avviare il servizio con il seguente comando da terminale
+* Configurare il file " default.json " con i propri dati.
+  
+* Avviare il servizio con il seguente comando da terminale:
   ```
   node index.js
   ```
+----------------------------------------------------------------------------------------------------------------------------------------
   
-* 
+* Aprire la cartella " SensoriCli " e aprire con Visual Studio il progetto " SensoriCli.sln ".
+
+* Configurare il file " App.config " con i propri dati e avviare l'applicazione.
 
 
 ## Running the tests
