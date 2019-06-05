@@ -6,23 +6,32 @@ Corso IoT 2018/2019
 ### Prerequisiti
 
 - Per l' utilizzo del seguente progetto è necessario predisporsi dei seguenti software :
-    - [Redis](https://redis.io/)
-    - [Visual Studio Code]
-    - [NodeJs]
-    - [Visual Studio 2019]
+    - Redis
+    - Visual Studio Code
+    - NodeJs
+    - Visual Studio 2019
+    - InfluxDb
+    - Chronograf
+    - Microsoft SQL Server Management Studio
     
-- Prima di avviare il programma per la simulazione dei sensori è necessario configurare i seguenti parametri nel file [app.config](Autobus/app.config):
-  - urlApi //url del metodo POST delle API che invia i dati al database
-  - idMezzo //id del mezzo che si vuole simulare
+- Prima di avviare il programma per la simulazione dei sensori è necessario configurare i seguenti parametri nel file **Autobus/app.config**:
+  - **urlApi** //url del metodo POST delle API che invia i dati al database
+  - **idMezzo** //id del mezzo che si vuole simulare
   
-- Prima di avviare il server delle API è necessario configurare i seguenti parametri nel file [default.json](Api/config/default.json):
-  - host //indirizzo ip del database
-  - database //nome del database utilizzato
+- Prima di avviare il server delle API è necessario configurare i seguenti parametri nel file **Api/config/default.json**:
+  - **host** //indirizzo ip del database
+  - **database** //nome del database utilizzato
 
-### Installazione
+### Installazione e avvio del progetto
 
-* Configurare Redis sulla porta 6379
-
+* Configurare Redis sulla porta 6379 con l' utilizzo di Docker con il seguente comando da terminale
+  ```
+  docker run --name pw-redis -p 6379:6379 -d redis
+  ```
+* Avviare il container con il seguente comando da terminale
+  ```
+  docker start *nome_container*
+  ```
 * Aprire la cartella Api con Visual Studio Code
 
 * Eseguire il seguente comando da terminale
@@ -33,35 +42,16 @@ Corso IoT 2018/2019
   ```
   node index.js
   ```
+* All' interno della cartella **influxdb-1.7.6-1** avviare i seguenti eseguibili
+    * **influxd.exe**
+    * **influx.exe**
+    
+* All' interno della cartella **chronograf-1.7.11** avviare il seguente eseguibile
+    * **chronograf.exe**
+    
+
   
-* 
-
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Built With
+## Sviluppato con
 
 * Visual Studio 2019
 * Docker
