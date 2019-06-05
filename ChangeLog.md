@@ -3,7 +3,7 @@ Di seguito si elencano gli aggiornamento delle versioni del progetto con le risp
 
 ## [Unreleased]
 
-## [0.0.7] - 2019-06-05
+## [0.0.7] - 2019-06-10
 ### Added
 - Aggiunto il supporto al multi-threading nel codice per generare e leggere i dati
 - Implementazione di più Autobus nello stesso programma
