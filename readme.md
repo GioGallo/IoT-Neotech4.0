@@ -7,12 +7,9 @@ Corso IoT 2018/2019
 
 - Per l' utilizzo del seguente progetto è necessario predisporsi dei seguenti software :
     - Redis
-    - Visual Studio Code
     - NodeJs
-    - Visual Studio 2019
     - InfluxDb
     - Chronograf
-    - Microsoft SQL Server Management Studio
     
 - Prima di avviare il programma per la simulazione dei sensori è necessario configurare i seguenti parametri nel file **Autobus/app.config**:
   - **urlApi** //url del metodo POST delle API che invia i dati al database
@@ -56,10 +53,13 @@ Corso IoT 2018/2019
   
 ## Sviluppato con
 
-* Visual Studio 2019
-* Docker
-* Redis
-* InfluxDb
+- Redis
+- Visual Studio Code
+- NodeJs
+- Visual Studio 2019
+- InfluxDb
+- Chronograf
+- Microsoft SQL Server Management Studio
 
 ## Autori
 
