@@ -29,11 +29,7 @@ namespace SensoriCLI
         {
             try
             {
-                if (redis.LLen("sensors_data") == 0)
-                {
-
-                }
-                else
+                if (redis.LLen("sensors_data") != 0)
                 {
                     HttpWebRequest httpWebRequestData;
                     httpWebRequestData = (HttpWebRequest)WebRequest.Create(url);
@@ -41,10 +37,17 @@ namespace SensoriCLI
                     httpWebRequestData.Method = "POST";
                     using (var streamWriter = new StreamWriter(httpWebRequestData.GetRequestStream()))
                     {
+                        try
+                        {
+                            string dataJson = redis.BLPop(30, "sensors_data");
+                            streamWriter.Write(dataJson);
+                            streamWriter.Flush();
+                        }
+                        catch(Exception e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
 
-                        string dataJson = redis.BLPop(30, "sensors_data");
-                        streamWriter.Write(dataJson);
-                        streamWriter.Flush();
                         streamWriter.Close();
 
                     }
