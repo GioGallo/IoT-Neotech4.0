@@ -16,30 +16,30 @@ namespace SensoriCLI
             List<Thread> lstThread = new List<Thread>();
             foreach (string id in idMezzi)
             {
-                Thread t = new Thread(() => Generadati(id));
+                DataSender ds = new DataSender();
+                Thread t = new Thread(() => Generadati(ds,id));
                 t.Name = "id" + id;
                 t.Start();
                 lstThread.Add(t);
             }
-            Thread invio = new Thread(InvioDati);
+            DataSender dsi = new DataSender();
+            Thread invio = new Thread(()=>InvioDati(dsi));
             invio.Start();
         }
-        public static void InvioDati()
+        public static void InvioDati(DataSender datasender)
         {
-            DataSender redis = new DataSender();
             while (true)
             {
-                redis.Send();
+                datasender.Send();
             }
         }
-        public static void Generadati(string id)
+        public static void Generadati(DataSender datasender, string id)
         {
-            DataSender redis = new DataSender();
             VirtualGPSSensor sensor = new VirtualGPSSensor(Convert.ToInt32(id));
             while (true)
             {
                 string dato = sensor.Dati();
-                redis.Read(dato);
+                datasender.Write(dato);
                 System.Threading.Thread.Sleep(10000);
             }
 

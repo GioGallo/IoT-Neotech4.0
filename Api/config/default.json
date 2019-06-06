@@ -1,5 +1,5 @@
 {
-    "hostInflux":"192.168.101.31",
+    "hostInflux":"192.168.101.25",
     "databaseInflux":"Autobus",
 
 

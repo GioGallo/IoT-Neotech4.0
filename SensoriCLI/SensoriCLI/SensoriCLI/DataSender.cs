@@ -21,7 +21,7 @@ namespace SensoriCLI
             url = new AppSettingsReader().GetValue("urlApi", typeof(string)).ToString();
         }
 
-        public void Read(string data)
+        public void Write(string data)
         {
             redis.LPush("sensors_data", data);
         }
