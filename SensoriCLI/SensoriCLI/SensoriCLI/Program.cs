@@ -25,6 +25,7 @@ namespace SensoriCLI
             DataSender dsi = new DataSender();
             Thread invio = new Thread(()=>InvioDati(dsi));
             invio.Start();
+            //Console.WriteLine("Sensori in funzione");
         }
         public static void InvioDati(DataSender datasender)
         {
@@ -40,6 +41,7 @@ namespace SensoriCLI
             {
                 string dato = sensor.Dati();
                 datasender.Write(dato);
+                Console.WriteLine(dato);
                 System.Threading.Thread.Sleep(10000);
             }
 

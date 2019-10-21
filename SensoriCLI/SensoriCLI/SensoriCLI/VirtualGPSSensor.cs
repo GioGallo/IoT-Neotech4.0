@@ -102,7 +102,15 @@ namespace SensoriCLI
         /*{"id": 1,"latitudine": "45.956748","longitudine" : "12.654375","orario":"1559033359000000000","Aperto":false,"Persone":0}*/
         public string Dati()
         {
-            return ToJson()+",\"Aperto\":"+Apertura()+",\"Persone\":"+nPersone()+"}";
+            string porte = Apertura();
+            if(porte=="true")
+            {
+                return ToJson() + ",\"Aperto\":" + porte + ",\"Persone\":" + nPersone() + "}";
+            }
+            else
+            {
+                return ToJson() + ",\"Aperto\":" + Apertura() + ",\"Persone\":" + persone + "}";
+            }
         }
     }
 }
