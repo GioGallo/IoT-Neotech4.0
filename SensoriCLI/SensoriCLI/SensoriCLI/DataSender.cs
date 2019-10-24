@@ -10,20 +10,13 @@ using CSRedis;
 
 namespace SensoriCLI
 {
-    class DataSender
+    class DataSender : DataReader
     {
-        private RedisClient redis;
         private string url;
 
-        public DataSender()
+        public DataSender():base()
         {
-            redis = new RedisClient("127.0.0.1");
             url = new AppSettingsReader().GetValue("urlApi", typeof(string)).ToString();
-        }
-
-        public void Write(string data)
-        {
-            redis.LPush("sensors_data", data);
         }
         public void Send()
         {
@@ -61,7 +54,7 @@ namespace SensoriCLI
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+               Console.WriteLine("DataSender : "+e.Message);
             }
         }
     }

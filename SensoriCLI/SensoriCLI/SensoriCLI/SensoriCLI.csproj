@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataReader.cs" />
     <Compile Include="DataSender.cs" />
     <Compile Include="iGPSSensor.cs" />
     <Compile Include="iSensor.cs" />
