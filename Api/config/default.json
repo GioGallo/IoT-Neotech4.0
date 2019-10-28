@@ -1,11 +1,11 @@
 {
-    "hostInflux":"192.168.101.25",
+    "hostInflux":"192.168.102.21",
     "databaseInflux":"Autobus",
 
 
     "userMssql":"sa",
     "password":"Vmware1!",
-    "server":"192.168.101.31\\sqlexpress",
+    "server":"192.168.102.21\\sqlexpress",
     "databaseMssql":"Project-Work"
 
 }

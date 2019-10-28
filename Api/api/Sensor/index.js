@@ -6,7 +6,9 @@ const influx = new Influx.InfluxDB({
     schema: [
       {
         measurement: 'Posizione3',
-        fields: { Aperte: Influx.FieldType.BOOLEAN,
+        fields: { 
+            Velocità:Influx.FieldType.INTEGER,
+            Aperte: Influx.FieldType.BOOLEAN,
             Latitudine: Influx.FieldType.FLOAT,
             Longitudine: Influx.FieldType.FLOAT,
         Persone: Influx.FieldType.INTEGER },
@@ -17,6 +19,16 @@ const influx = new Influx.InfluxDB({
 
 
 async function routes (fastify, options) {
+  fastify.get('/', async (request, reply) => {
+    try {   
+        return influx.query(`select * from Posizione3 order by time desc limit 1 `);
+    } catch (error) {
+        console.log(error);
+        reply.status(400).send('Errore');
+        
+    }
+});
+
   fastify.post('/', async (request, reply) => {
         var data=request.body;
         //console.log(JSON.stringify(data));
@@ -36,7 +48,9 @@ async function routes (fastify, options) {
                 tags: {
                     Id:data.id
                 },
-                fields: {Aperte: data.Aperto,
+                fields: {
+                    Velocità:data.Velocità,
+                    Aperte: data.Aperto,
                     Latitudine: data.latitudine,
                     Longitudine: data.longitudine,
                 Persone: data.Persone},

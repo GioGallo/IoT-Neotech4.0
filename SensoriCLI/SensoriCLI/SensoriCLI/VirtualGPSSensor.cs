@@ -12,8 +12,8 @@ namespace SensoriCLI
         private double LongStazione = 12.654347;
         private double costante = (0.000100 - 0.000010) + 0.000010;
         private int id;
-        private const int maxPersone=70;
-        private int persone=0;
+        private const int maxPersone = 70;
+        private int persone = 0;
 
 
 
@@ -63,9 +63,9 @@ namespace SensoriCLI
         {
             Random random = new Random();
             int n = random.Next(-5, 5);
-            if (n<0)
+            if (n < 0)
             {
-                if (persone+n>=0)
+                if (persone + n >= 0)
                 {
                     persone = persone + n;
                 }
@@ -76,7 +76,7 @@ namespace SensoriCLI
             }
             else
             {
-                if(persone+n>=maxPersone)
+                if (persone + n >= maxPersone)
                 {
                     persone = 70;
                 }
@@ -92,17 +92,30 @@ namespace SensoriCLI
         {
             Random random = new Random();
 
-            if(random.Next() %2 ==0)
+            if (random.Next() % 2 == 0)
             {
                 return "false";
             }
             return "true";
 
         }
-        /*{"id": 1,"latitudine": "45.956748","longitudine" : "12.654375","orario":"1559033359000000000","Aperto":false,"Persone":0}*/
+        private int Velocità()
+        {
+            Random random = new Random();
+            return random.Next(10, 50);           
+        }
+
         public string Dati()
         {
-            return ToJson()+",\"Aperto\":"+Apertura()+",\"Persone\":"+nPersone()+"}";
+            string porte = Apertura();
+            if (porte == "true")
+            {
+                return ToJson() + ",\"Aperto\":" + porte + ",\"Persone\":" + nPersone() + ",\"Velocità\": 0"+"}";
+            }
+            else
+            {
+                return ToJson() + ",\"Aperto\":" + Apertura() + ",\"Persone\":" + persone + ",\"Velocità\":"+Velocità()+ "}";
+            }
         }
     }
 }
