@@ -1,11 +1,9 @@
 ﻿using CSRedis;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace SensoriCLI
+namespace SensoriMezzi.Data
 {
     class DataReader
     {
@@ -19,13 +17,14 @@ namespace SensoriCLI
         {
             try
             {
-                redis.LPush("sensors_data", data);
+               // redis.LPush("sensors_data",data);
+                redis.LPush("sensor_data",data);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                Console.WriteLine("DataReader : "+e.Message);
+                Console.WriteLine("DataReader : " + e.Message);
             }
-            
+
         }
     }
 }

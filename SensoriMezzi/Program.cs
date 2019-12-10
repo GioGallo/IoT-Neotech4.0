@@ -1,29 +1,29 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using SensoriMezzi.Data;
+using SensoriMezzi.Sensori;
+using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
+using System.IO;
 using System.Threading;
-using System.Threading.Tasks;
 
-namespace SensoriCLI
+namespace SensoriMezzi
 {
     class Program
     {
         static void Main(string[] args)
         {
-            List<String> idMezzi = new AppSettingsReader().GetValue("idMezzi", typeof(string)).ToString().Split(',').ToList();
-            List<Thread> lstThread = new List<Thread>();
-            foreach (string id in idMezzi)
-            {
-                DataReader dr = new DataReader();
-                Thread t = new Thread(() => Generadati(dr,id));
-                t.Name = "id" + id;
-                t.Start();
-                lstThread.Add(t);
-            }
-            DataSender ds = new DataSender();
-            Thread invio = new Thread(()=>InvioDati(ds));
+            var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+            IConfigurationRoot configuration = builder.Build();
+
+            DataReader dr = new DataReader();
+            string id = configuration.GetConnectionString("Id");
+            Thread t = new Thread(() => Generadati(dr,id));
+            t.Name = "id" + id;
+            t.Start();
+
+
+            DataSender ds = new DataSender(configuration.GetConnectionString("UrlApi"));
+            Thread invio = new Thread(() => InvioDati(ds));
             invio.Start();
             //Console.WriteLine("Sensori in funzione");
         }

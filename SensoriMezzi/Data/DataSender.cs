@@ -1,22 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Text;
-using System.Threading.Tasks;
 using CSRedis;
 
-namespace SensoriCLI
+namespace SensoriMezzi.Data
 {
     class DataSender : DataReader
     {
         private string url;
 
-        public DataSender():base()
+        public DataSender(string Url) : base()
         {
-            url = new AppSettingsReader().GetValue("urlApi", typeof(string)).ToString();
+            url = Url;
         }
         public void Send()
         {
@@ -32,11 +29,11 @@ namespace SensoriCLI
                     {
                         try
                         {
-                            string dataJson = redis.BLPop(30, "sensors_data");
+                            string dataJson = redis.BLPop(30,"sensors_data");
                             streamWriter.Write(dataJson);
                             streamWriter.Flush();
                         }
-                        catch(Exception e)
+                        catch (Exception e)
                         {
                             Console.WriteLine(e.Message);
                         }
@@ -54,7 +51,7 @@ namespace SensoriCLI
             }
             catch (Exception e)
             {
-               Console.WriteLine("DataSender : "+e.Message);
+                Console.WriteLine("DataSender : " + e.Message);
             }
         }
     }
