@@ -11,9 +11,9 @@ Corso IoT 2018/2019
     - InfluxDb
     - Chronograf
     
-- Prima di avviare il programma per la simulazione dei sensori è necessario configurare i seguenti parametri nel file **Autobus/app.config**:
+- Prima di avviare il programma per la simulazione dei sensori è necessario configurare i seguenti parametri nel file **SensoriMezzi/appsettings.json**:
   - **urlApi** //url del metodo POST delle API che invia i dati al database
-  - **idMezzo** //id del mezzo che si vuole simulare
+  - **Id** //id del mezzo che si vuole simulare
   
 - Prima di avviare il server delle API è necessario configurare i seguenti parametri nel file **Api/config/default.json**:
   - **host** //indirizzo ip del database
@@ -39,7 +39,7 @@ Corso IoT 2018/2019
       ```
       node index.js
       ```
-* Aprire la cartella **SensoriCLI** con Visual Studio Community e avviare il programma
+* Aprire la cartella **SensoriMezzi** con Visual Studio Community e avviare il programma
 
 * All' interno della cartella **influxdb-1.7.6-1** avviare i seguenti eseguibili
     * **influxd.exe**
